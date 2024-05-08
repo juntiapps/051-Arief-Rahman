@@ -1,3 +1,3 @@
-Nama : Arief Rahman
-Projek : E-library
-Deskripi: Alikasi manajemen perpustakaan yang berfungsi untuk mengelola stok buku, pengguna, dan data peminjaman buku buku
+- Nama : Arief Rahman
+- Projek : E-library
+- Deskripi: Alikasi manajemen perpustakaan yang berfungsi untuk mengelola stok buku, pengguna, dan data peminjaman buku buku
