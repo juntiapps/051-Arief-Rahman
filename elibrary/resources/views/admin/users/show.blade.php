@@ -1,35 +1,43 @@
 @extends('layout.app')
 
 @section('title')
-    Daftar Anggota
+    Detail Anggota
 @endsection
 
 @section('content')
-    <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah</button>
-    <table id="example1" class="table table-bordered table-striped">
-        <thead>
+    <table class="table">
+        <tbody>
             <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Aksi</th>
+                <th>ID Anggota</th>
+                <td>{{ $user->id }}</td>
             </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot>
             <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Aksi</th>
+                <th>Nama Anggota</th>
+                <td>{{ $user->name }}</td>
             </tr>
-        </tfoot>
+            <tr>
+                <th>Email Anggota</th>
+                <td>{{ $user->email }}</td>
+            </tr>
+            <tr>
+                <th>Peran</th>
+                <td>{{ $user->role }}</td>
+            </tr>
+
+        </tbody>
     </table>
+    <a type="button" class="btn btn-success" href="{{url()->previous() }}"><i class="fas fa-arrow-left"></i> Kembali</a>
 @endsection
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap4.min.css') }}">
+    <style>
+        .tabb {
+            display: inline-block;
+            width: :200px
+        }
+    </style>
 @endpush
 
 @push('js')

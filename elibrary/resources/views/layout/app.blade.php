@@ -133,7 +133,7 @@
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         {{-- <span class="dropdown-item dropdown-header">15 Notifications</span> --}}
                         <div class="dropdown-divider"></div>
-                        <a href="/login" class="dropdown-item">
+                        <a href="{{ route('auth.logout') }}" class="dropdown-item">
                             <i class="fas fa-power-off mr-2"></i> Keluar
                             {{-- <span class="float-right text-muted text-sm">3 mins</span> --}}
                         </a>
@@ -230,7 +230,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/users" class="nav-link"> <i class="nav-icon fa fa-list"></i>
+                            <a href="/admin/users" class="nav-link"> <i class="nav-icon fa fa-list"></i>
 
                                 <p>
                                     Daftar Anggota
