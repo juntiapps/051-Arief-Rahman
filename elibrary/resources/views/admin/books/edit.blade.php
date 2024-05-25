@@ -5,36 +5,57 @@
 @endsection
 
 @section('content')
-    <form action="" method="post">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form action="{{ route('admin.books.update', $book->id) }}" method="post">
+        @csrf
+        @method('PUT')
         <div class="form-group">
             <label for="id_buku">ID Buku:</label>
-            <input type="text" class="form-control" id="id_buku" name="id_buku">
+            <input type="text" class="form-control" name="id" value="{{$book->id}}" disabled>
         </div>
         <div class="form-group">
-            <label for="nama_buku">Nama Buku:</label>
-            <input type="text" class="form-control" id="nama_buku" name="nama_buku">
+            <label for="nama_buku">Judul:</label>
+            <input type="text" class="form-control" id="nama_buku" name="title" value="{{$book->title}}" required>
         </div>
         <div class="form-group">
             <label for="pengarang">Pengarang:</label>
-            <input type="text" class="form-control" id="pengarang" name="pengarang">
+            <input type="text" class="form-control" id="pengarang" name="author" value="{{$book->author}}" required>
         </div>
         <div class="form-group">
             <label for="kategori">Kategori:</label>
-            <select class="form-control" id="kategori" name="kategori[]" multiple>
-                <option value="Fiksi">Fiksi</option>
-                <option value="Non-Fiksi">Non-Fiksi</option>
-                <option value="Komedi">Komedi</option>
-                <!-- Tambahkan pilihan lainnya sesuai dengan kategori yang Anda inginkan -->
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="stok">Stok:</label>
-            <input type="number" class="form-control" id="stok" name="stok">
-        </div>
-        {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
+            <div class="row">
+                @foreach ($categories as $index => $category)
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="categories[]" value="{{ $category->id }}" @checked(in_array($category->id,$cat_checked))>
+                            <label class="form-check-label">
+                                {{ $category->name }}
+                            </label>
+                        </div>
+                    </div>
+                    @if (($index + 1) % 6 == 0)
+            </div>
+            <div class="row">
+                @endif
+                @endforeach
+            </div>
+            <div class="form-group">
+                <label for="stok">Stok:</label>
+                <input type="number" class="form-control" id="stok" name="stock" value="{{$book->stock}}" required>
+            </div>
+            {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
 
-        <button type="button" class="btn btn-success"><i class="fas fa-save"></i> Update</button>
-        <button type="button" class="btn btn-danger"><i class="fas fa-times"></i> Batal</button>
+            <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Update</button>
+            <a type="button" class="btn btn-danger" href="{{ url()->previous() }}"><i class="fas fa-times"></i> Batal</a>
+
     </form>
 @endsection
 

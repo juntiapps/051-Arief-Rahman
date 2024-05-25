@@ -14,7 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $catwgories = Category::all();
+        $categories = Category::all();
         return view('admin.categories.list', compact('categories'));
     }
 
@@ -87,8 +87,12 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
         //
+        $category->delete();
+
+        return redirect()->route('admin.categories.index')->with('success', 'Kategori Berhasil dihapus');
+    
     }
 }

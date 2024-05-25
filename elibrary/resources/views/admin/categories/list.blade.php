@@ -5,7 +5,12 @@
 @endsection
 
 @section('content')
-    <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah</button>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    <a type="button" class="btn btn-primary" href="{{route('admin.categories.create')}}"><i class="fas fa-plus"></i> Tambah</a>
     <table id="example1" class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -14,7 +19,27 @@
                 <th>Aksi</th>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+            @foreach ($categories as $category)
+                <tr>
+                    <td>{{ $category->id }}</td>
+                    <td>{{ $category->name }}</td>
+                    <td>
+                        <a href="{{ route('admin.categories.show', $category->id) }}" type="button" class="btn btn-secondary"><i
+                                class="fas fa-eye"></i> Tampilkan</a>
+                        <a href="{{ route('admin.categories.edit', $category->id) }}" type="button" class="btn btn-warning"><i
+                                class="fas fa-edit"></i> Edit</a>
+
+                        <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" style="display:inline;"
+                            onsubmit="return confirmDelete()">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
         <tfoot>
             <tr>
                 <th>No</th>
@@ -43,5 +68,10 @@
                 "autoWidth": false,
             })
         });
+    </script>
+    <script>
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this user?');
+        }
     </script>
 @endpush

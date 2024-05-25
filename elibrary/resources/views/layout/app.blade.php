@@ -214,7 +214,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/books" class="nav-link">
+                            <a href="{{ route('admin.books.index') }}" class="nav-link">
                                 <i class="nav-icon fa fa-list"></i>
                                 <p>
                                     Daftar Buku
@@ -222,7 +222,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/categories" class="nav-link">
+                            <a href="{{ route('admin.categories.index') }}" class="nav-link">
                                 <i class="nav-icon fa fa-list"></i>
                                 <p>
                                     Daftar Kategori
@@ -230,7 +230,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/users" class="nav-link"> <i class="nav-icon fa fa-list"></i>
+                            <a href="{{ route('admin.users.index') }}" class="nav-link"> <i
+                                    class="nav-icon fa fa-list"></i>
 
                                 <p>
                                     Daftar Anggota

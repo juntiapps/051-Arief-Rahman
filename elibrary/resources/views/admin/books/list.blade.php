@@ -5,12 +5,17 @@
 @endsection
 
 @section('content')
-    <a href="/books/add" type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah</a>
+    {{-- {{var_dump($categories->a}} --}}
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    <a href="{{ route('admin.books.create') }}" type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah</a>
     <table id="example1" class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>No</th>
-                <th>ID Buku</th>
                 <th>Judul Buku</th>
                 <th>Pengarang</th>
                 <th>Kategori</th>
@@ -21,16 +26,22 @@
         <tbody>
             @foreach ($books as $book)
                 <tr>
-                    <td>{{ $loop->index + 1}}</td>
-                    <td>{{ $book['id'] }}</td>
-                    <td>{{ $book['title'] }}</td>
-                    <td>{{ $book['author'] }}</td>
-                    <td>{{ $book['stock'] }}</td>
-                    <td>{{ $book['category'] }}</td>
+                    <td>{{ $book->id }}</td>
+                    <td>{{ $book->title }}</td>
+                    <td>{{ $book->author}}</td>
+                    <td>{{ $book->category }}</td>
+                    <td>{{ $book->stock }}</td>
                     <td>
-                        <a href="/books/show" type="button" class="btn btn-secondary"><i class="fas fa-eye"></i> Tampilkan</a>
-                        <a href="/books/edit" type="button" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
-                        <a href="/books/delete" type="button" class="btn btn-danger"><i class="fas fa-times"></i> Hapus</a>
+                        <a href="{{ route('admin.books.show', $book->id) }}" type="button" class="btn btn-secondary"><i
+                                class="fas fa-eye"></i> Tampilkan</a>
+                        <a href="{{ route('admin.books.edit', $book->id) }}" type="button" class="btn btn-warning"><i
+                                class="fas fa-edit"></i> Edit</a>
+                        <form action="{{ route('admin.books.destroy', $book->id) }}" method="POST"
+                            style="display:inline;" onsubmit="return confirmDelete()">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit">Hapus</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
@@ -38,7 +49,6 @@
         <tfoot>
             <tr>
                 <th>No</th>
-                <th>ID Buku</th>
                 <th>Judul Buku</th>
                 <th>Pengarang</th>
                 <th>Kategori</th>
@@ -67,5 +77,10 @@
                 "autoWidth": false,
             })
         });
+    </script>
+    <script>
+        function confirmDelete() {
+            return confirm('Are you sure you want to delete this user?');
+        }
     </script>
 @endpush

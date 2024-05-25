@@ -1,38 +1,23 @@
 @extends('layout.app')
 
 @section('title')
-    Detail Buku
+    Detail Kategori
 @endsection
 
 @section('content')
     <table class="table">
         <tbody>
             <tr>
-                <th>ID Buku</th>
-                <td>{{ $book['id'] }}</td>
+                <th>ID Kategori</th>
+                <td>{{ $category->id }}</td>
             </tr>
             <tr>
-                <th>Judul Buku</th>
-                <td>{{ $book['title'] }}</td>
-            </tr>
-            <tr>
-                <th>Pengarang</th>
-                <td>{{ $book['author'] }}</td>
-            </tr>
-            <tr>
-                <th>Kategori</th>
-                <td>{{ $book['category'] }}</td>
-            </tr>
-            <tr>
-                <th>Stok</th>
-                <td>{{ $book['stock'] }}</td>
+                <th>Nama Kategori</th>
+                <td>{{ $category->name }}</td>
             </tr>
         </tbody>
     </table>
-    {{-- <button type="button" class="btn btn-success"><i class="fas fa-arrow-left"></i> Kembali</button> --}}
     <a type="button" class="btn btn-success" href="{{url()->previous() }}"><i class="fas fa-arrow-left"></i> Kembali</a>
-
-
 @endsection
 
 @push('css')

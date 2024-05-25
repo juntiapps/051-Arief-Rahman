@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
@@ -30,6 +31,7 @@ Route::middleware(Authenticate::class)->group(function () {
         Route::get('/', [DashboardController::class,'index'])->name('admin.dash');
         Route::resource('users',UserController::class);
         Route::resource('categories',CategoryController::class);
+        Route::resource('books',BookController::class);
     });
     
     Route::get('', function () {
