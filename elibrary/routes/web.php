@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\User\HomeController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,10 +34,18 @@ Route::middleware(Authenticate::class)->group(function () {
         Route::resource('categories',CategoryController::class);
         Route::resource('books',BookController::class);
     });
-    
+
     Route::get('', function () {
         return view('admin.dash');
     });
+
+    Route::get('home',[HomeController::class, 'index'])->name('user.home');
+    Route::get('detail/{id}',[HomeController::class, 'detail'])->name('user.detail');
+    Route::post('add_to_cart',[HomeController::class, 'addToCart'])->name('user.addtocart');
+    Route::get('home',[HomeController::class, 'index'])->name('user.home');
+    Route::get('checkout',[HomeController::class, 'checkout'])->name('user.checkout');
+    Route::get('history',[HomeController::class, 'history'])->name('user.history');
+    Route::post('checkout',[HomeController::class, 'sendCheckout'])->name('user.sendcheckout');
 });
 
 

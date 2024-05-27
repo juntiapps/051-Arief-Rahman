@@ -18,7 +18,8 @@
                 <th>No</th>
                 <th>Judul Buku</th>
                 <th>Pengarang</th>
-                <th>Kategori</th>
+                <th>Tahun</th>
+                <th>Penerbit</th>
                 <th>Stok</th>
                 <th>Aksi</th>
             </tr>
@@ -29,7 +30,8 @@
                     <td>{{ $book->id }}</td>
                     <td>{{ $book->title }}</td>
                     <td>{{ $book->author}}</td>
-                    <td>{{ $book->category }}</td>
+                    <td>{{ $book->year }}</td>
+                    <td>{{ $book->publisher }}</td>
                     <td>{{ $book->stock }}</td>
                     <td>
                         <a href="{{ route('admin.books.show', $book->id) }}" type="button" class="btn btn-secondary"><i
@@ -51,7 +53,8 @@
                 <th>No</th>
                 <th>Judul Buku</th>
                 <th>Pengarang</th>
-                <th>Kategori</th>
+                <th>Tahun</th>
+                <th>Penerbit</th>
                 <th>Stok</th>
                 <th>Aksi</th>
             </tr>
@@ -80,7 +83,7 @@
     </script>
     <script>
         function confirmDelete() {
-            return confirm('Are you sure you want to delete this user?');
+            return confirm('Apakah anda yakin?');
         }
     </script>
 @endpush

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('order_id');
+            $table->string('order_id')->nullable();
             $table->integer('book_id');
-            $table->date('borrow_date');
-            $table->date('return_date');
+            $table->date('borrow_date')->nullable();
+            $table->date('return_date')->nullable();
             $table->integer('user_id');
             $table->integer('status');
             $table->timestamps();

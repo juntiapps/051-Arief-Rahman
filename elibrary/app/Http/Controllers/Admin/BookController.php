@@ -50,7 +50,11 @@ class BookController extends Controller
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
             'stock' => 'required|integer',
-            'categories' => 'required|array|min:1'
+            'categories' => 'required|array|min:1',
+            'synopsis' => 'required|string|max:255',
+            'year' => 'required|integer',
+            'publisher' => 'required|string|max:255',
+            'cover' => 'required|string|max:255'
         ]);
 
         $category_id = implode(",", $request->categories);
@@ -59,7 +63,11 @@ class BookController extends Controller
             'title' => $request->title,
             'author' => $request->author,
             'stock' => $request->stock,
-            'category_id' => $category_id
+            'category_id' => $category_id,
+            'synopsis' => $request->synopsis,
+            'year' =>  $request->year,
+            'publisher' => $request->publisher,
+            'cover' =>  $request->cover
         ]);
 
         return redirect()->route('admin.books.index')->with('success', 'Buku Berhasil Ditambahkan');
@@ -94,7 +102,7 @@ class BookController extends Controller
 
         $cat_checked = explode(",", $book->category_id);
 
-        return view('admin.books.edit', compact('book','cat_checked','categories'));
+        return view('admin.books.edit', compact('book', 'cat_checked', 'categories'));
     }
 
     /**
@@ -107,7 +115,11 @@ class BookController extends Controller
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
             'stock' => 'required|integer',
-            'categories' => 'required|array|min:1'
+            'categories' => 'required|array|min:1',
+            'synopsis' => 'required|string|max:255',
+            'year' => 'required|integer',
+            'publisher' => 'required|string|max:255',
+            'cover' => 'required|string|max:255'
         ]);
 
         $category_id = implode(",", $request->categories);
@@ -116,7 +128,11 @@ class BookController extends Controller
             'title' => $request->title,
             'author' => $request->author,
             'stock' => $request->stock,
-            'category_id' => $category_id
+            'category_id' => $category_id,
+            'synopsis' => $request->synopsis,
+            'year' =>  $request->year,
+            'publisher' => $request->publisher,
+            'cover' =>  $request->cover
         ]);
 
         return redirect()->route('admin.books.index')->with('success', 'Detail Buku Berhasil Diubah');

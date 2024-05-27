@@ -21,8 +21,20 @@
             <input type="text" class="form-control" id="nama_buku" name="title" required>
         </div>
         <div class="form-group">
+            <label for="nama_buku">Sinopsis:</label>
+            <textarea type="text" class="form-control" id="synopsis" name="synopsis" required></textarea>
+        </div>
+        <div class="form-group">
             <label for="pengarang">Pengarang:</label>
             <input type="text" class="form-control" id="pengarang" name="author" required>
+        </div>
+        <div class="form-group">
+            <label for="stok">Tahun:</label>
+            <input type="number" class="form-control" id="tahun" name="year" required>
+        </div>
+        <div class="form-group">
+            <label for="pengarang">Penerbit:</label>
+            <input type="text" class="form-control" id="penerbit" name="publisher" required>
         </div>
         <div class="form-group">
             <label for="kategori">Kategori:</label>
@@ -51,6 +63,10 @@
             <div class="form-group">
                 <label for="stok">Stok:</label>
                 <input type="number" class="form-control" id="stok" name="stock" required>
+            </div>
+            <div class="form-group">
+                <label for="pengarang">URL Cover:</label>
+                <input type="text" class="form-control" id="cover" name="cover" required>
             </div>
             {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
 

@@ -26,8 +26,20 @@
             <input type="text" class="form-control" id="nama_buku" name="title" value="{{$book->title}}" required>
         </div>
         <div class="form-group">
+            <label for="nama_buku">Sinopsis:</label>
+            <textarea type="text" class="form-control" id="nama_buku" name="synopsis" required>{{$book->synopsis}}</textarea>
+        </div>
+        <div class="form-group">
             <label for="pengarang">Pengarang:</label>
             <input type="text" class="form-control" id="pengarang" name="author" value="{{$book->author}}" required>
+        </div>
+        <div class="form-group">
+            <label for="stok">Tahun:</label>
+            <input type="number" class="form-control" id="stok" name="year" value="{{$book->year}}" required>
+        </div>
+        <div class="form-group">
+            <label for="pengarang">Penerbit:</label>
+            <input type="text" class="form-control" id="pengarang" name="publisher" value="{{$book->publisher}}" required>
         </div>
         <div class="form-group">
             <label for="kategori">Kategori:</label>
@@ -51,7 +63,12 @@
                 <label for="stok">Stok:</label>
                 <input type="number" class="form-control" id="stok" name="stock" value="{{$book->stock}}" required>
             </div>
+            <div class="form-group">
+                <label for="pengarang">URL Cover:</label>
+                <input type="text" class="form-control" id="pengarang" name="cover" value="{{$book->cover}}" required>
+            </div>
             {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
+
 
             <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Update</button>
             <a type="button" class="btn btn-danger" href="{{ url()->previous() }}"><i class="fas fa-times"></i> Batal</a>

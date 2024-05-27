@@ -21,7 +21,7 @@ class AuthController extends Controller
         }
 
         if(!Hash::check($request->password,$user->password)){
-            return redirect()->back()->with('error',"Password Salam");
+            return redirect()->back()->with('error',"Password Salah");
         }
 
         $request->session()->regenerate();
@@ -29,7 +29,12 @@ class AuthController extends Controller
         $request->session()->put('userId',$user->id);
         $request->session()->put('role',$user->role);
 
-        return redirect()->route('admin.admin.dash');
+        $route = 'admin.admin.dash';
+        if($user->role==1){
+            $route = 'user.home';
+        } 
+
+        return redirect()->route($route);
     }
     public function logout(Request $request)
     {
