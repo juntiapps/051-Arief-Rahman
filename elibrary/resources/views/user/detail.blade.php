@@ -54,7 +54,7 @@
     <input type="hidden" value="{{$book->id}}" name="book_id"/>
     <input type="hidden" value="{{$user_id}}" name="user_id"/>
 <a type="button" class="btn btn-secondary" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Kembali</a>
-<button type="submit" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Tambahkan ke Keranjang</button>
+<button type="submit" class="btn btn-primary" @disabled($book['stock']==0)><i class="fas fa-cart-plus" ></i> Tambahkan ke Keranjang</button>
 </form>
 
 @endsection

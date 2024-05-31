@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -16,6 +17,7 @@ class BookController extends Controller
     {
         $categories = Category::all();
         $books = Book::all();
+        // $trans = Transaction::all();
 
         foreach ($books as &$value) {
             # code...
@@ -26,6 +28,9 @@ class BookController extends Controller
                 $cat_name[] = $cat->name;
             }
             $value->category = implode(", ", $cat_name);
+            $trans = Transaction::where('book_id', $value->id)->get();
+            $trans = count($trans);
+            $value->stock = $value->stock - $trans . "/" . $value->stock;
         }
         return view('admin.books.list', compact('books', 'categories'));
     }
@@ -88,6 +93,9 @@ class BookController extends Controller
             $cat_name[] = $cat->name;
         }
         $book->category = implode(", ", $cat_name);
+        $trans = Transaction::where('book_id', $book->id)->get();
+        $trans = count($trans);
+        $book->stock = $book->stock - $trans . "/" . $book->stock;
         return view('admin.books.show', compact('book'));
     }
 

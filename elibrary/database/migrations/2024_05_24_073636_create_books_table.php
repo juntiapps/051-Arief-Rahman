@@ -16,7 +16,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('author');
             $table->integer('stock');
-            $table->string('category_id');
+            $table->string('category_id',50);
+            $table->string('cover');
+            $table->text('synopsis');
+            $table->integer('year');
+            $table->string('publisher');
             $table->timestamps();
         });
     }

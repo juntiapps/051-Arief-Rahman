@@ -169,8 +169,9 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="/home" class="brand-link">
-
+            <a href="{{route('admin.admin.dash')}}" class="brand-link">
+                <img src="{{asset('img/logo.png')}}" alt="Elibrary Logo"
+                            class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">ELibrary</span>
             </a>
 
@@ -206,7 +207,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="/home" class="nav-link">
+                            <a href="{{route('admin.admin.dash')}}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -239,7 +240,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/transactions" class="nav-link"> <i class="nav-icon fa fa-list"></i>
+                            <a href="{{ route('admin.transactions.index') }}" class="nav-link"> <i class="nav-icon fa fa-list"></i>
 
                                 <p>
                                     Daftar Peminjaman
@@ -317,7 +318,7 @@
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 1.0.0
             </div>
-            <strong>Copyright &copy; 2024 <a href="https://adminlte.io">ELibrary</a>.</strong> All rights
+            <strong>Copyright &copy; 2024 <a href="{{url('/')}}">ELibrary</a>.</strong> All rights
             reserved.
         </footer>
 

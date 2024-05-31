@@ -16,16 +16,45 @@
                 <tr>
                     <th>No</th>
                     <th>Order ID</th>
-                    <th>Judul Buku</th>
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-
+                @foreach ($histories as $index => $item)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td><a href="{{ route('user.history.detail', $item['order_id']) }}">{{ $item['order_id'] }}</a></td>
+                        @php
+                            $color = '';
+                            $status = '';
+                            switch ($item['status']) {
+                                case 1:
+                                    $status = 'UNVERIFIED';
+                                    $color = 'warning';
+                                    break;
+                                case 2:
+                                    $status = 'VERIFIED';
+                                    $color = 'success';
+                                    break;
+                                case 3:
+                                    $status = 'COMPLETED';
+                                    $color = 'danger';
+                                    break;
+                                default:
+                                    # code...
+                                    break;
+                            }
+                        @endphp
+                        <td>
+                            <div class="badge badge-{{ $color }}">
+                                {{ $status }}</div>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
-    <a type="button" class="btn btn-secondary" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Kembali</a>
+    <a type="button" class="btn btn-secondary" href="{{ route('user.home') }}"><i class="fas fa-arrow-left"></i> Kembali</a>
 @endsection
 
 @push('css')

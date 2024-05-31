@@ -1,77 +1,89 @@
 @extends('layout.app2')
 
 @section('title')
-    Check Out
+    Detail Riwayat
 @endsection
 
 @section('content')
-    <form action="{{ route('user.sendcheckout') }}" method="post" onsubmit="return confirmDelete()">
-        <div class="p-1 m-1">
-            <h4>Order ID: #{{ $order_id }}</h4>
-        </div>
-        <div class="col-12 table-responsive">
-            <table class="table table-striped">
-                <thead>
+    @php
+        $color = '';
+        $status = '';
+        switch ($data['status']) {
+            case 1:
+                $status = 'UNVERIFIED';
+                $color = 'warning';
+                break;
+            case 2:
+                $status = 'VERIFIED';
+                $color = 'success';
+                break;
+            case 3:
+                $status = 'COMPLETED';
+                $color = 'danger';
+                break;
+            default:
+                # code...
+                break;
+        }
+    @endphp
+    <div class="p-1 m-1">
+        <h4>Order ID: #{{ $data['order_id'] }}</h4>
+        <h5>Order Status: <span class="badge badge-{{ $color }}">{{ $status }}</span></h5>
+        <h5>Borrow - Return: {{$data['start']}} - {{$data['finish']}}</h5>
+    </div>
+    <div class="col-12 table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Judul</th>
+                    <th>Pengarang</th>
+                    <th>Tahun</th>
+                    <th>Jumlah</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($data['data'] as $index => $item)
                     <tr>
-                        <th>No</th>
-                        <th>Judul</th>
-                        <th>Pengarang</th>
-                        <th>Tahun</th>
-                        <th>Jumlah</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($carts as $index => $item)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $item['title'] }}</td>
-                            <td>{{ $item['author'] }}</td>
-                            <td>{{ $item['year'] }}</td>
-                            <td>{{ $item['jumlah'] }}</td>
-                        <tr>
-                    @endforeach
-                </tbody>
-                <tfoot>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $item['title'] }}</td>
+                        <td>{{ $item['author'] }}</td>
+                        <td>{{ $item['year'] }}</td>
+                        <td>1</td>
                     <tr>
-                        <th colspan="4" class="text-right">Jumlah</th>
-                        <th id='jumlah'>{{ count($carts) }}</th>
-                    </tr>
-                    <tr>
-                        <th colspan="4" class="text-right">Lama Pinjam</th>
-                        <th>
-                            <div class="row align-items-center">
-                                <input type="number" name='hari' value='2' style="width: 50px;" class="hari mr-2"
-                                    min="2" />hari
-                            </div>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th colspan="4" class="text-right">Total</th>
-                        <th>
-                            <div class="row ">
-                                <div id='total'></div>
-                                <div class="mx-2">x Rp.</div>
-                                <div id='harga'>{{ $harga }}</div>
-                                <div class="mx-2">= Rp. </div>
-                                <div id='grandtotal' class="font-weight-bold"></div>
-                            </div>
-                        </th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-cart-plus"></i> Kirim</button>
-
-    </form>
-    {{-- {{var_dump($user_id)}} --}}
-    {{-- <button type="button" class="btn btn-success"><i class="fas fa-arrow-left"></i> Kembali</button> --}}
-    {{-- <form action="{{ route('user.addtocart') }}" method="post" onsubmit="return confirmDelete()">
-    @csrf
-    <input type="hidden" value="{{$book->id}}" name="book_id"/>
-    <input type="hidden" value="{{$user_id}}" name="user_id"/>
-<a type="button" class="btn btn-secondary" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Kembali</a>
-<button type="submit" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Tambahkan ke Keranjang</button>
-</form> --}}
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4" class="text-right">Jumlah</th>
+                    <th id='jumlah'>{{ count($data['data']) }}</th>
+                </tr>
+                <tr>
+                    <th colspan="4" class="text-right">Lama Pinjam</th>
+                    <th>
+                        <div class="row align-items-center">
+                            <input type="number" name='hari' value={{ $data['days'] }} style="width: 50px;"
+                                class="hari mr-2" min="2" disabled />hari
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="4" class="text-right">Total</th>
+                    <th>
+                        <div class="row ">
+                            <div id='total'></div>
+                            <div class="mx-2">x Rp.</div>
+                            <div id='harga'>{{ $data['harga'] }}</div>
+                            <div class="mx-2">= Rp. </div>
+                            <div id='grandtotal' class="font-weight-bold"></div>
+                        </div>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <a type="button" class="btn btn-secondary" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i>
+        Kembali</a>
 @endsection
 
 @push('css')

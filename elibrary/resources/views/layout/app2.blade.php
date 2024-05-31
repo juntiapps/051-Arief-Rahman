@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('css/fontawesome-free/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/css/adminlte.min.css') }}">
+    {{-- <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"> --}}
     @stack('css')
 </head>
 
@@ -27,6 +28,9 @@
             <div class="container">
                 <ul class="navbar-nav">
                     <a href="{{ route('user.home') }}" class="navbar-brand">
+                        <img src="{{asset('img/logo.png')}}" alt="Elibrary Logo"
+                            class="brand-image img-circle elevation-3" style="opacity: .8">
+
                         <span class="brand-text font-weight-light">ELibrary</span>
                     </a>
                     {{-- <li class="nav-item">
@@ -46,7 +50,7 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
                         <i class="fas fa-search"></i>
                     </a>
@@ -66,7 +70,7 @@
                             </div>
                         </form>
                     </div>
-                </li>
+                </li> --}}
 
                 <!-- Messages Dropdown Menu -->
                 {{-- <li class="nav-item dropdown">

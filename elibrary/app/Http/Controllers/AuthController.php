@@ -11,28 +11,36 @@ class AuthController extends Controller
     //
     public function loginPage()
     {
-        return view('auth.login');
+        if (session()->get('isLogged')) {
+            if (session()->get('role') == 0) {
+                return redirect()->route('admin.admin.dash');
+            } else {
+                return redirect()->route('user.home');
+            }
+        } else {
+            return view('auth.login');
+        }
     }
     public function login(Request $request)
     {
-        $user = User::where('email',$request->email)->first();
-        if($user==null){
-            return redirect()->back()->with('error',"User tidak ditemukan");
+        $user = User::where('email', $request->email)->first();
+        if ($user == null) {
+            return redirect()->back()->with('error', "User tidak ditemukan");
         }
 
-        if(!Hash::check($request->password,$user->password)){
-            return redirect()->back()->with('error',"Password Salah");
+        if (!Hash::check($request->password, $user->password)) {
+            return redirect()->back()->with('error', "Password Salah");
         }
 
         $request->session()->regenerate();
-        $request->session()->put('isLogged',true);
-        $request->session()->put('userId',$user->id);
-        $request->session()->put('role',$user->role);
+        $request->session()->put('isLogged', true);
+        $request->session()->put('userId', $user->id);
+        $request->session()->put('role', $user->role);
 
         $route = 'admin.admin.dash';
-        if($user->role==1){
+        if ($user->role == 1) {
             $route = 'user.home';
-        } 
+        }
 
         return redirect()->route($route);
     }

@@ -18,7 +18,6 @@ class ParamSeeder extends Seeder
             [
                 'harga' => 2000
             ]
-
         );
     }
 }

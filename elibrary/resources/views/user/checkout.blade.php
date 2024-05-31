@@ -30,6 +30,7 @@
                         <th>Pengarang</th>
                         <th>Tahun</th>
                         <th>Jumlah</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +41,10 @@
                             <td>{{ $item['author'] }}</td>
                             <td>{{ $item['year'] }}</td>
                             <td>{{ $item['jumlah'] }}</td>
+                            <td>
+                                <a href="{{ route('user.delcheckout', $item['id']) }}" class="btn btn-danger btm-sm"
+                                    onclick="return confirmDelete()">Hapus</a>
+                            </td>
                         <tr>
                     @endforeach
                 </tbody>
@@ -72,7 +77,9 @@
                 </tfoot>
             </table>
         </div>
-        <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-cart-plus"></i> Kirim</button>
+<a type="button" class="btn btn-secondary" href="{{ route('user.home') }}"><i class="fas fa-arrow-left"></i> Kembali</a>
+
+        <button type="submit" class="btn btn-primary "><i class="fas fa-cart-plus"></i> Kirim</button>
 
     </form>
     {{-- {{var_dump($user_id)}} --}}

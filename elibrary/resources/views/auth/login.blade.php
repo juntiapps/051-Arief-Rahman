@@ -15,12 +15,24 @@
     <link rel="stylesheet" href="{{ asset('css/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/css/adminlte.min.css') }}">
+    <style>
+        body {
+    background-image: url('{{ asset("img/login_back.jpg") }}');
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: bottom center; /* Vertically aligns the image to the bottom */
+    height: 100vh; /* Adjust height as needed */
+}
+    </style>
 </head>
 
 <body class="hold-transition login-page">
     <div class="login-box">
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
+            <div class="p-2 text-center"><img src="{{ asset('img/logo.png') }}" alt="Elibrary Logo"
+                    class="brand-image img-circle elevation-3" style="opacity: .8;height:80px;width:80px"></div>
+
             <div class="card-header text-center">
                 <a href="" class="h1"><b>E</b>Library</a>
             </div>
@@ -51,12 +63,12 @@
                     </div>
                     <div class="row">
                         <div class="col-8">
-                            <div class="icheck-primary">
+                            {{-- <div class="icheck-primary">
                                 <input type="checkbox" id="remember">
                                 <label for="remember">
                                     Ingat Saya
                                 </label>
-                            </div>
+                            </div> --}}
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
